@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Archive, Presentation, PenTool, Link2 } from 'lucide-react'
 import type { Artifact } from '@/lib/db/schema'
+import CrosshatchCard from '@/components/portfolio/CrosshatchCard'
 
 const typeIcon: Record<string, typeof Archive> = {
   pdf: Archive,
@@ -22,20 +23,22 @@ export default function ArtifactCard({ artifact }: ArtifactCardProps) {
       href={`/artifacts/${artifact.slug}`}
       className="block group hover:shadow-sm hover:scale-[1.01] transition-all rounded-xl"
     >
-      {artifact.coverImage ? (
-        <div className="relative aspect-video rounded-xl overflow-hidden bg-zinc-100">
-          <Image
-            src={artifact.coverImage}
-            alt={artifact.coverImageAlt ?? artifact.title}
-            fill
-            className="object-cover"
-          />
-        </div>
-      ) : (
-        <div className="aspect-video rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center">
-          <Icon size={32} className="text-zinc-300" />
-        </div>
-      )}
+      <CrosshatchCard rounded="rounded-xl" offset={6}>
+        {artifact.coverImage ? (
+          <div className="relative aspect-video rounded-xl overflow-hidden bg-zinc-100">
+            <Image
+              src={artifact.coverImage}
+              alt={artifact.coverImageAlt ?? artifact.title}
+              fill
+              className="object-cover"
+            />
+          </div>
+        ) : (
+          <div className="aspect-video rounded-xl bg-zinc-100 border border-zinc-200 flex items-center justify-center">
+            <Icon size={32} className="text-zinc-300" />
+          </div>
+        )}
+      </CrosshatchCard>
 
       <h3 className="text-sm font-bold text-zinc-900 mt-3 group-hover:text-teal-600 transition-colors">
         {artifact.title}
