@@ -1,36 +1,19 @@
-'use client'
-
-import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, Settings } from 'lucide-react'
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu'
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { Settings } from 'lucide-react'
+import MobileNav from '@/components/layout/MobileNav'
 
 const navLinkStyle =
-  'text-xs font-medium text-zinc-700 hover:text-teal-600 transition-colors'
+  'text-base font-medium text-zinc-700 hover:text-teal-600 transition-colors px-3 py-2'
 
 const dropdownItemStyle =
-  'block px-3 py-2 text-xs text-zinc-600 hover:text-teal-600 hover:bg-zinc-50 rounded-md transition-colors'
-
-const triggerStyle =
-  'bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:focus:bg-transparent h-auto p-0 ' +
-  navLinkStyle
-
-const mobileLinkStyle = 'block py-3 text-xs text-zinc-700 border-b border-zinc-100'
+  'block px-3 py-2 text-sm text-zinc-600 hover:text-teal-600 hover:bg-zinc-50 rounded-md transition-colors'
 
 type HeaderProps = {
   resumeUrl?: string
+  linkedinUrl?: string
 }
 
-export default function Header({ resumeUrl = '' }: HeaderProps) {
-  const [open, setOpen] = useState(false)
+export default function Header({ resumeUrl = '', linkedinUrl = '' }: HeaderProps) {
   const hasResume = Boolean(resumeUrl)
 
   return (
@@ -42,19 +25,19 @@ export default function Header({ resumeUrl = '' }: HeaderProps) {
       </Link>
 
       <nav className="hidden md:flex items-center">
-        <NavigationMenu viewport={false}>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild className={navLinkStyle}>
-                <Link href="/">Home</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
+        <ul className="flex items-center">
+          <li>
+            <Link href="/" className={navLinkStyle}>
+              Home
+            </Link>
+          </li>
 
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className={triggerStyle}>
-                About
-              </NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-white border border-zinc-100 rounded-xl shadow-sm p-2">
+          <li className="relative group">
+            <Link href="/about" className={navLinkStyle}>
+              About
+            </Link>
+            <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-150">
+              <div className="bg-white border border-zinc-100 rounded-xl shadow-sm p-2 min-w-36">
                 <Link href="/blog" className={dropdownItemStyle}>
                   Blog
                 </Link>
@@ -64,22 +47,21 @@ export default function Header({ resumeUrl = '' }: HeaderProps) {
                 <Link href="/skills" className={dropdownItemStyle}>
                   Skills
                 </Link>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+              </div>
+            </div>
+          </li>
 
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className={triggerStyle}>
-                Work
-              </NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-white border border-zinc-100 rounded-xl shadow-sm p-2">
+          <li className="relative group">
+            <Link href="/work" className={navLinkStyle}>
+              Work
+            </Link>
+            <div className="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-150">
+              <div className="bg-white border border-zinc-100 rounded-xl shadow-sm p-2 min-w-36">
                 <a
                   href={hasResume ? resumeUrl : '#'}
                   target="_blank"
                   rel="noopener"
-                  className={
-                    dropdownItemStyle +
-                    (hasResume ? '' : ' text-zinc-300 pointer-events-none')
-                  }
+                  className={dropdownItemStyle + (hasResume ? '' : ' text-zinc-300 pointer-events-none')}
                 >
                   Resume
                 </a>
@@ -89,16 +71,16 @@ export default function Header({ resumeUrl = '' }: HeaderProps) {
                 <Link href="/case-studies" className={dropdownItemStyle}>
                   Case Studies
                 </Link>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+              </div>
+            </div>
+          </li>
 
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild className={navLinkStyle}>
-                <Link href="/contact">Contact</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+          <li>
+            <Link href="/contact" className={navLinkStyle}>
+              Contact
+            </Link>
+          </li>
+        </ul>
 
         <Link href="/admin" aria-label="Admin">
           <Settings
@@ -108,75 +90,7 @@ export default function Header({ resumeUrl = '' }: HeaderProps) {
         </Link>
       </nav>
 
-      <div className="md:hidden">
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
-            <button aria-label="Open menu">
-              <Menu size={20} className="text-zinc-700" />
-            </button>
-          </SheetTrigger>
-          <SheetContent side="right">
-            <SheetTitle className="px-4 pt-4 text-xs uppercase tracking-widest text-zinc-400">
-              Menu
-            </SheetTitle>
-            <nav className="px-4">
-              <Link href="/" className={mobileLinkStyle} onClick={() => setOpen(false)}>
-                Home
-              </Link>
-              <Link href="/about" className={mobileLinkStyle} onClick={() => setOpen(false)}>
-                About
-              </Link>
-              <Link href="/blog" className={mobileLinkStyle} onClick={() => setOpen(false)}>
-                Blog
-              </Link>
-              <Link
-                href="/education"
-                className={mobileLinkStyle}
-                onClick={() => setOpen(false)}
-              >
-                Education
-              </Link>
-              <Link href="/skills" className={mobileLinkStyle} onClick={() => setOpen(false)}>
-                Skills
-              </Link>
-              <Link href="/work" className={mobileLinkStyle} onClick={() => setOpen(false)}>
-                Work
-              </Link>
-              <a
-                href={hasResume ? resumeUrl : '#'}
-                target="_blank"
-                rel="noopener"
-                className={
-                  mobileLinkStyle + (hasResume ? '' : ' text-zinc-300 pointer-events-none')
-                }
-              >
-                Resume
-              </a>
-              <Link
-                href="/artifacts"
-                className={mobileLinkStyle}
-                onClick={() => setOpen(false)}
-              >
-                Artifacts
-              </Link>
-              <Link
-                href="/case-studies"
-                className={mobileLinkStyle}
-                onClick={() => setOpen(false)}
-              >
-                Case Studies
-              </Link>
-              <Link
-                href="/contact"
-                className={mobileLinkStyle}
-                onClick={() => setOpen(false)}
-              >
-                Contact
-              </Link>
-            </nav>
-          </SheetContent>
-        </Sheet>
-      </div>
+      <MobileNav resumeUrl={resumeUrl} linkedinUrl={linkedinUrl} />
     </header>
   )
 }

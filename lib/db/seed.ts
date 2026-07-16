@@ -24,10 +24,9 @@ async function main() {
     console.log('Admin user already exists — skipping')
   }
 
-  // Default site settings (idempotent upsert)
+  // Default site settings (idempotent upsert — does not overwrite existing values)
   const defaults = [
     { key: 'heroHeadline', value: JSON.stringify('Joshua Lee Garza') },
-    { key: 'heroSubtitle', value: JSON.stringify('Computer Science Student · Full-Stack Developer') },
     { key: 'aboutText', value: JSON.stringify('') },
     { key: 'aboutImageUrl', value: JSON.stringify('') },
     { key: 'resumeUrl', value: JSON.stringify('') },
@@ -40,6 +39,14 @@ async function main() {
   for (const row of defaults) {
     await db.insert(siteSettings).values(row).onConflictDoNothing()
   }
+
+  // heroSubtitle text was revised — force-update the live value even if already seeded
+  const heroSubtitle = JSON.stringify('Computer Science · Full-Stack Developer')
+  await db
+    .insert(siteSettings)
+    .values({ key: 'heroSubtitle', value: heroSubtitle })
+    .onConflictDoUpdate({ target: siteSettings.key, set: { value: heroSubtitle } })
+
   console.log('Site settings seeded')
   process.exit(0)
 }

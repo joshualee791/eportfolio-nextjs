@@ -30,7 +30,7 @@ export default async function Artifacts() {
           <p className="text-zinc-300 text-xs">No artifacts published yet.</p>
         </Reveal>
       ) : (
-        <div className="grid grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 gap-6 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10">
           {items.map((artifact, i) => (
             <Reveal key={artifact.id} delay={i * 0.05}>
               <ArtifactCard artifact={artifact} />

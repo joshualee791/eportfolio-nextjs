@@ -17,8 +17,8 @@ export default function Work() {
         </h1>
       </Reveal>
 
-      <div className="grid grid-cols-2 sm:grid-cols-1 gap-6 mt-10">
-        <Reveal delay={0.1}>
+      <div className="flex flex-col sm:flex-row gap-6 mt-10">
+        <Reveal delay={0.1} className="flex-1">
           <Link
             href="/artifacts"
             className="block h-full border border-zinc-200 rounded-2xl p-8 hover:border-teal-400 hover:shadow-sm transition-all"
@@ -31,7 +31,7 @@ export default function Work() {
           </Link>
         </Reveal>
 
-        <Reveal delay={0.2}>
+        <Reveal delay={0.2} className="flex-1">
           <Link
             href="/case-studies"
             className="block h-full border border-zinc-200 rounded-2xl p-8 hover:border-teal-400 hover:shadow-sm transition-all"

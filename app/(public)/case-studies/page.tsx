@@ -30,7 +30,7 @@ export default async function CaseStudies() {
           <p className="text-zinc-300 text-xs">No case studies published yet.</p>
         </Reveal>
       ) : (
-        <div className="grid grid-cols-2 lg:grid-cols-1 gap-8 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">
           {items.map((study, i) => (
             <Reveal key={study.id} delay={i * 0.05}>
               <CaseStudyCard study={study} />

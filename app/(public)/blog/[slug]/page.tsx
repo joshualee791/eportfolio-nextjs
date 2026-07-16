@@ -46,7 +46,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main id="main-content" className="pt-32 pb-20 max-w-2xl mx-auto px-8">
+    <main id="main-content" className="pt-32 pb-20 max-w-2xl mx-auto px-4 sm:px-8">
       {post.coverImage && (
         <Reveal>
           <Image

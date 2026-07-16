@@ -48,7 +48,7 @@ export default async function ArtifactPage({ params }: ArtifactPageProps) {
   const typeLabel = artifact.type.charAt(0).toUpperCase() + artifact.type.slice(1)
 
   return (
-    <main id="main-content" className="max-w-3xl mx-auto pt-32 pb-20 px-8">
+    <main id="main-content" className="max-w-3xl mx-auto pt-32 pb-20 px-4 sm:px-8">
       {artifact.coverImage && (
         <Reveal>
           <Image

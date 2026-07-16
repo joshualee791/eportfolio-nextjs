@@ -62,7 +62,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   }
 
   return (
-    <main id="main-content" className="max-w-3xl mx-auto pt-32 pb-20 px-8">
+    <main id="main-content" className="max-w-3xl mx-auto pt-32 pb-20 px-4 sm:px-8">
       {study.coverImage && (
         <Reveal>
           <Image

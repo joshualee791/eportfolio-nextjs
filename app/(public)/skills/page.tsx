@@ -32,7 +32,7 @@ export default async function Skills() {
           <p className="text-zinc-300 text-xs">Skills coming soon.</p>
         </Reveal>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-1 gap-10 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-10">
           {categories.map((cat, i) => (
             <Reveal key={cat.category} delay={i * 0.1}>
               <h2 className="text-2xl font-light uppercase tracking-[0.12em] text-zinc-900 leading-tight">

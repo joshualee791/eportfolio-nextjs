@@ -28,7 +28,7 @@ export default async function Blog() {
           <p className="text-zinc-300 text-xs">No posts published yet.</p>
         </Reveal>
       ) : (
-        <div className="grid grid-cols-2 lg:grid-cols-1 gap-8 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">
           {posts.map((post, i) => (
             <Reveal key={post.id} delay={i * 0.05}>
               <Link href={`/blog/${post.slug}`} className="block group">

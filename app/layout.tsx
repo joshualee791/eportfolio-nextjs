@@ -1,9 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Header from '@/components/layout/Header'
-import TopoBackground from '@/components/home/TopoBackground'
 import { Toaster } from '@/components/ui/sonner'
-import { getSetting } from '@/lib/db/settings'
 import './globals.css'
 
 const inter = Inter({
@@ -22,13 +19,11 @@ export const metadata: Metadata = {
   },
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const resumeUrl = await getSetting('resumeUrl')
-
   return (
     <html lang="en" className={inter.variable}>
       <body className={`${inter.className} bg-white text-zinc-600 text-xs leading-snug antialiased`}>
@@ -38,11 +33,7 @@ export default async function RootLayout({
         >
           Skip to content
         </a>
-        <TopoBackground />
-        <div className="relative z-10">
-          <Header resumeUrl={resumeUrl} />
-          {children}
-        </div>
+        {children}
         <Toaster />
       </body>
     </html>
