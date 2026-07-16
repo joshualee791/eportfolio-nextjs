@@ -1,75 +1,69 @@
-'use client'
-
-import Image from 'next/image'
-import { motion } from 'framer-motion'
 import { Mail } from 'lucide-react'
 import { FaLinkedin } from 'react-icons/fa'
+import { getSetting } from '@/lib/db/settings'
+import PhotoCard from '@/components/home/PhotoCard'
 
-type HeroProps = {
-  aboutImageUrl: string
-  heroSubtitle: string
-  linkedinUrl: string
-}
+export default async function Hero() {
+  const linkedinUrl = await getSetting('linkedinUrl')
+  const heroSubtitle = (await getSetting('heroSubtitle')) || 'Computer Science  ·  Full-Stack Developer'
 
-export default function Hero({ aboutImageUrl, heroSubtitle, linkedinUrl }: HeroProps) {
   return (
-    <section className="h-screen flex flex-col items-center justify-center text-center px-6 relative z-10">
-      {aboutImageUrl && (
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="relative w-28 h-28 rounded-full overflow-hidden border-2 border-zinc-100 mb-8 shadow-sm"
-        >
-          <Image src={aboutImageUrl} alt="Joshua Lee Garza" fill className="object-cover" />
-        </motion.div>
-      )}
+    <section className="relative h-screen flex items-center overflow-hidden px-8 md:px-16">
+      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
+        <div className="w-full flex justify-center md:hidden">
+          <PhotoCard />
+        </div>
 
-      <motion.h1
-        initial={{ y: 24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.1, duration: 0.6 }}
-        className="text-6xl sm:text-7xl md:text-8xl font-extrabold text-teal-600 leading-none tracking-tight mb-4"
-      >
-        Joshua Lee Garza
-      </motion.h1>
-
-      {heroSubtitle && (
-        <motion.h2
-          initial={{ y: 24, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-lg sm:text-xl md:text-2xl font-light uppercase tracking-[0.12em] text-zinc-900 leading-tight mb-10"
-        >
-          {heroSubtitle}
-        </motion.h2>
-      )}
-
-      <motion.div
-        initial={{ y: 24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.6 }}
-        className="flex items-center gap-6"
-      >
-        {linkedinUrl && (
-          <a
-            href={linkedinUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="text-zinc-400 hover:text-teal-600 transition-colors"
+        <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+          <h1
+            className="font-extrabold text-teal-600 leading-none tracking-tight mb-5"
+            style={{ fontSize: 'clamp(2.8rem, 6vw, 6rem)' }}
           >
-            <FaLinkedin size={22} />
-          </a>
-        )}
-        <a
-          href="mailto:joshualee791@gmail.com"
-          aria-label="Email"
-          className="text-zinc-400 hover:text-teal-600 transition-colors"
-        >
-          <Mail size={22} />
-        </a>
-      </motion.div>
+            Joshua Garza
+          </h1>
+
+          <div className="flex md:hidden items-center gap-4 mb-5 w-full max-w-xs">
+            <div className="flex-1 h-px bg-zinc-200" />
+            <div className="w-1.5 h-1.5 rounded-full bg-teal-500" />
+            <div className="flex-1 h-px bg-zinc-200" />
+          </div>
+
+          <div className="hidden md:flex items-center gap-3 mb-5">
+            <div className="w-10 h-0.5 bg-teal-500" />
+            <div className="w-20 h-px bg-zinc-200" />
+          </div>
+
+          <p
+            className="font-light uppercase text-zinc-700 mb-10"
+            style={{ fontSize: 'clamp(0.6rem, 1.2vw, 1rem)', letterSpacing: '0.16em' }}
+          >
+            {heroSubtitle}
+          </p>
+
+          <div className="flex items-center gap-1">
+            <a
+              href={linkedinUrl || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="w-11 h-11 flex items-center justify-center text-zinc-400 hover:text-teal-600 transition-colors"
+            >
+              <FaLinkedin size={26} />
+            </a>
+            <a
+              href="/contact"
+              aria-label="Email"
+              className="w-11 h-11 flex items-center justify-center text-zinc-400 hover:text-teal-600 transition-colors"
+            >
+              <Mail size={26} />
+            </a>
+          </div>
+        </div>
+
+        <div className="hidden md:flex w-[42%] justify-end group cursor-pointer">
+          <PhotoCard />
+        </div>
+      </div>
     </section>
   )
 }
