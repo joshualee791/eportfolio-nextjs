@@ -3,6 +3,14 @@
 @import "shadcn/tailwind.css";
 @plugin "@tailwindcss/typography";
 
+/*
+ * Contrast check: teal-600 (#0D9488) on white (#FFFFFF) is 3.74:1.
+ * Passes WCAG AA for large text (>=18px, or >=14px bold) at the 3:1 threshold —
+ * this covers the H1/H2 headings and hero text that use teal-600 throughout the site.
+ * It does NOT meet the 4.5:1 threshold for normal text, so small teal-600 text
+ * (nav links, tag pills, "Read case study ->") is a known AA gap at that size,
+ * left as-is here since recoloring is a design decision, not a Phase 6 polish task.
+ */
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { eq, isNotNull } from 'drizzle-orm'
+import type { Metadata } from 'next'
 import { ExternalLink } from 'lucide-react'
 import { db } from '@/lib/db/client'
 import { artifacts } from '@/lib/db/schema'
@@ -18,6 +19,24 @@ type ArtifactPageProps = {
   params: Promise<{ slug: string }>
 }
 
+export async function generateMetadata({ params }: ArtifactPageProps): Promise<Metadata> {
+  const { slug } = await params
+  const [artifact] = await db.select().from(artifacts).where(eq(artifacts.slug, slug))
+
+  if (!artifact || !artifact.publishedAt) return {}
+
+  return {
+    title: artifact.seoTitle || artifact.title,
+    description: artifact.metaDescription || artifact.description,
+    alternates: artifact.canonicalUrl ? { canonical: artifact.canonicalUrl } : undefined,
+    openGraph: {
+      title: artifact.seoTitle || artifact.title,
+      description: artifact.metaDescription || artifact.description,
+      images: artifact.coverImage ? [{ url: artifact.coverImage }] : undefined,
+    },
+  }
+}
+
 export default async function ArtifactPage({ params }: ArtifactPageProps) {
   const { slug } = await params
   const [artifact] = await db.select().from(artifacts).where(eq(artifacts.slug, slug))
@@ -29,7 +48,7 @@ export default async function ArtifactPage({ params }: ArtifactPageProps) {
   const typeLabel = artifact.type.charAt(0).toUpperCase() + artifact.type.slice(1)
 
   return (
-    <main className="max-w-3xl mx-auto pt-32 pb-20 px-8">
+    <main id="main-content" className="max-w-3xl mx-auto pt-32 pb-20 px-8">
       {artifact.coverImage && (
         <Reveal>
           <Image

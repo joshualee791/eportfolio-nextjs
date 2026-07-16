@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { ArrowLeft, Loader2 } from 'lucide-react'
@@ -318,12 +319,14 @@ export default function PostEditor({ type, initialData, id }: PostEditorProps) {
           <div className="space-y-2">
             <Label className="text-xs text-zinc-600">Cover Image</Label>
             {form.coverImage && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={form.coverImage}
-                alt={form.coverImageAlt || 'Cover preview'}
-                className="w-full aspect-video object-cover rounded-lg border border-zinc-200"
-              />
+              <div className="relative w-full aspect-video rounded-lg border border-zinc-200 overflow-hidden">
+                <Image
+                  src={form.coverImage}
+                  alt={form.coverImageAlt || 'Cover preview'}
+                  fill
+                  className="object-cover"
+                />
+              </div>
             )}
             <UploadButton<OurFileRouter, 'imageUploader'>
               endpoint="imageUploader"

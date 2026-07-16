@@ -100,7 +100,7 @@ export default function Header({ resumeUrl = '' }: HeaderProps) {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <Link href="/admin">
+        <Link href="/admin" aria-label="Admin">
           <Settings
             size={16}
             className="text-zinc-400 hover:text-teal-600 transition-colors ml-6"

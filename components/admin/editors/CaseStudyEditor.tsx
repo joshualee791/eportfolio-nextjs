@@ -43,6 +43,7 @@ export default function CaseStudyEditor({ form, update, onTitleChange }: CaseStu
           value={form.techStack}
           onChange={(tags) => update('techStack', tags)}
           placeholder="Add a technology and press Enter"
+          ariaLabel="Tech Stack"
         />
       </div>
 

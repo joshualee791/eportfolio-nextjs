@@ -8,9 +8,10 @@ type TagInputProps = {
   value: string[]
   onChange: (tags: string[]) => void
   placeholder?: string
+  ariaLabel?: string
 }
 
-export default function TagInput({ value, onChange, placeholder }: TagInputProps) {
+export default function TagInput({ value, onChange, placeholder, ariaLabel }: TagInputProps) {
   const [draft, setDraft] = useState('')
 
   function addTag(raw: string) {
@@ -51,6 +52,7 @@ export default function TagInput({ value, onChange, placeholder }: TagInputProps
         onKeyDown={handleKeyDown}
         onBlur={() => draft && addTag(draft)}
         placeholder={value.length === 0 ? placeholder : ''}
+        aria-label={ariaLabel ?? placeholder}
         className="flex-1 min-w-24 h-6 border-none shadow-none px-1 focus-visible:ring-0"
       />
     </div>

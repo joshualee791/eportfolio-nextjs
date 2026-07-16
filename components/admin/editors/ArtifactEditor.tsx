@@ -75,7 +75,12 @@ export default function ArtifactEditor({ form, update, onTitleChange }: Artifact
 
       <div className="space-y-1.5">
         <Label className="text-xs text-zinc-600">Tags</Label>
-        <TagInput value={form.tags} onChange={(tags) => update('tags', tags)} placeholder="Add a tag and press Enter" />
+        <TagInput
+          value={form.tags}
+          onChange={(tags) => update('tags', tags)}
+          placeholder="Add a tag and press Enter"
+          ariaLabel="Tags"
+        />
       </div>
 
       <div className="flex items-center gap-3">

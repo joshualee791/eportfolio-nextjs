@@ -6,7 +6,7 @@ import { FaLinkedinIn } from 'react-icons/fa'
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col md:flex-row items-center relative z-10 px-16 md:px-10 sm:px-6">
+    <main id="main-content" className="min-h-screen flex flex-col md:flex-row items-center relative z-10 px-16 md:px-10 sm:px-6">
       <div className="flex-1 flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0 }}
@@ -44,12 +44,14 @@ export default function Home() {
               href="https://linkedin.com"
               target="_blank"
               rel="noopener"
+              aria-label="LinkedIn"
               className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-500 hover:text-teal-600 hover:border-teal-600 transition-colors"
             >
               <FaLinkedinIn size={16} />
             </a>
             <a
               href="mailto:joshualee791@gmail.com"
+              aria-label="Email"
               className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center text-zinc-500 hover:text-teal-600 hover:border-teal-600 transition-colors"
             >
               <Mail size={16} />

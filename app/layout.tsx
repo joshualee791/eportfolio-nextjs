@@ -13,8 +13,13 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Joshua Lee Garza',
-  description: 'Portfolio of Joshua Lee Garza — Computer Science Student & Full-Stack Developer',
+  title: { default: 'Joshua Lee Garza', template: '%s | Joshua Lee Garza' },
+  description: 'Computer Science Student & Full-Stack Developer',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'Joshua Lee Garza',
+  },
 }
 
 export default async function RootLayout({
@@ -27,6 +32,12 @@ export default async function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className={`${inter.className} bg-white text-zinc-600 text-xs leading-snug antialiased`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-white text-teal-600 px-4 py-2 text-sm font-medium rounded"
+        >
+          Skip to content
+        </a>
         <TopoBackground />
         <div className="relative z-10">
           <Header resumeUrl={resumeUrl} />

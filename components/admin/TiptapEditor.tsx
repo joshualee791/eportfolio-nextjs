@@ -180,6 +180,7 @@ export default function TiptapEditor({ content, onChange, placeholder }: TiptapE
               button: (
                 <span className="inline-flex items-center justify-center size-7 rounded-md text-zinc-500 hover:text-zinc-900">
                   <ImageIcon size={14} />
+                  <span className="sr-only">Insert image</span>
                 </span>
               ),
               allowedContent: () => null,

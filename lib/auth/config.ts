@@ -4,8 +4,10 @@ import bcrypt from 'bcryptjs'
 import { db } from '@/lib/db/client'
 import { users } from '@/lib/db/schema'
 import { eq } from 'drizzle-orm'
+import { edgeAuthConfig } from './edge-config'
 
 export const authConfig: NextAuthConfig = {
+  ...edgeAuthConfig,
   providers: [
     Credentials({
       credentials: {
@@ -25,16 +27,4 @@ export const authConfig: NextAuthConfig = {
       },
     }),
   ],
-  session: { strategy: 'jwt' },
-  pages: { signIn: '/admin/login' },
-  callbacks: {
-    jwt({ token, user }) {
-      if (user) token.role = (user as { role: string }).role
-      return token
-    },
-    session({ session, token }) {
-      if (session.user) (session.user as typeof session.user & { role?: string }).role = token.role as string
-      return session
-    },
-  },
 }

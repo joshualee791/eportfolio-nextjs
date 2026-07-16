@@ -1,5 +1,11 @@
+import type { Metadata } from 'next'
 import { getSetting } from '@/lib/db/settings'
 import Reveal from '@/components/portfolio/Reveal'
+
+export const metadata: Metadata = {
+  title: 'Skills',
+  description: "Joshua Lee Garza's technical skills and areas of expertise.",
+}
 
 type SkillCategory = {
   category: string
@@ -16,7 +22,7 @@ export default async function Skills() {
   }
 
   return (
-    <main className="pt-32 pb-20 max-w-5xl mx-auto px-8">
+    <main id="main-content" className="pt-32 pb-20 max-w-5xl mx-auto px-8">
       <Reveal>
         <h1 className="text-5xl font-bold text-teal-600 leading-tight tracking-tight">Skills</h1>
       </Reveal>

@@ -91,6 +91,7 @@ export default function ContentTable({ items, type, onDelete, emptyLabel }: Cont
     <div>
       <Input
         placeholder="Search by title or slug..."
+        aria-label="Search by title or slug"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         className="max-w-xs mb-4"

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { eq } from 'drizzle-orm'
+import type { Metadata } from 'next'
 import { db } from '@/lib/db/client'
 import { blogPosts } from '@/lib/db/schema'
 import Reveal from '@/components/portfolio/Reveal'
@@ -18,6 +19,24 @@ type BlogPostPageProps = {
   params: Promise<{ slug: string }>
 }
 
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params
+  const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug))
+
+  if (!post || !post.published) return {}
+
+  return {
+    title: post.seoTitle || post.title,
+    description: post.metaDescription || post.excerpt,
+    alternates: post.canonicalUrl ? { canonical: post.canonicalUrl } : undefined,
+    openGraph: {
+      title: post.seoTitle || post.title,
+      description: post.metaDescription || post.excerpt,
+      images: post.coverImage ? [{ url: post.coverImage }] : undefined,
+    },
+  }
+}
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params
   const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug))
@@ -27,7 +46,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main className="pt-32 pb-20 max-w-2xl mx-auto px-8">
+    <main id="main-content" className="pt-32 pb-20 max-w-2xl mx-auto px-8">
       {post.coverImage && (
         <Reveal>
           <Image

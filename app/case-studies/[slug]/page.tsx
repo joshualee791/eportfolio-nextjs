@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { eq, isNotNull } from 'drizzle-orm'
+import type { Metadata } from 'next'
 import { ExternalLink } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import { db } from '@/lib/db/client'
@@ -19,6 +20,24 @@ export async function generateStaticParams() {
 
 type CaseStudyPageProps = {
   params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
+  const { slug } = await params
+  const [study] = await db.select().from(caseStudies).where(eq(caseStudies.slug, slug))
+
+  if (!study || !study.publishedAt) return {}
+
+  return {
+    title: study.seoTitle || study.title,
+    description: study.metaDescription || study.summary,
+    alternates: study.canonicalUrl ? { canonical: study.canonicalUrl } : undefined,
+    openGraph: {
+      title: study.seoTitle || study.title,
+      description: study.metaDescription || study.summary,
+      images: study.coverImage ? [{ url: study.coverImage }] : undefined,
+    },
+  }
 }
 
 function Section({ heading, html }: { heading: string; html: string }) {
@@ -43,7 +62,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   }
 
   return (
-    <main className="max-w-3xl mx-auto pt-32 pb-20 px-8">
+    <main id="main-content" className="max-w-3xl mx-auto pt-32 pb-20 px-8">
       {study.coverImage && (
         <Reveal>
           <Image

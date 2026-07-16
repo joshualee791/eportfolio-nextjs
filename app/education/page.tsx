@@ -1,5 +1,11 @@
+import type { Metadata } from 'next'
 import { getSetting } from '@/lib/db/settings'
 import Reveal from '@/components/portfolio/Reveal'
+
+export const metadata: Metadata = {
+  title: 'Education',
+  description: "Joshua Lee Garza's academic background and education history.",
+}
 
 type EducationItem = {
   institution: string
@@ -19,7 +25,7 @@ export default async function Education() {
   }
 
   return (
-    <main className="pt-32 pb-20 max-w-5xl mx-auto px-8">
+    <main id="main-content" className="pt-32 pb-20 max-w-5xl mx-auto px-8">
       <Reveal>
         <h1 className="text-5xl font-bold text-teal-600 leading-tight tracking-tight">
           Education

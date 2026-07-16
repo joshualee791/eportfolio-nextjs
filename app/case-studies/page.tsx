@@ -1,8 +1,14 @@
+import type { Metadata } from 'next'
 import { asc, isNotNull } from 'drizzle-orm'
 import { db } from '@/lib/db/client'
 import { caseStudies } from '@/lib/db/schema'
 import CaseStudyCard from '@/components/portfolio/CaseStudyCard'
 import Reveal from '@/components/portfolio/Reveal'
+
+export const metadata: Metadata = {
+  title: 'Case Studies',
+  description: 'In-depth write-ups — problem, approach, and outcome — from Joshua Lee Garza.',
+}
 
 export default async function CaseStudies() {
   const items = await db
@@ -12,7 +18,7 @@ export default async function CaseStudies() {
     .orderBy(asc(caseStudies.order))
 
   return (
-    <main className="pt-32 pb-20 max-w-5xl mx-auto px-8">
+    <main id="main-content" className="pt-32 pb-20 max-w-5xl mx-auto px-8">
       <Reveal>
         <h1 className="text-5xl font-bold text-teal-600 leading-tight tracking-tight">
           Case Studies

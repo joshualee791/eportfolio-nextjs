@@ -1,13 +1,19 @@
 import Image from 'next/image'
+import type { Metadata } from 'next'
 import { getSettings } from '@/lib/db/settings'
 import Reveal from '@/components/portfolio/Reveal'
+
+export const metadata: Metadata = {
+  title: 'About',
+  description: 'About Joshua Lee Garza — Computer Science Student & Full-Stack Developer.',
+}
 
 export default async function About() {
   const { aboutText, aboutImageUrl } = await getSettings(['aboutText', 'aboutImageUrl'])
   const paragraphs = aboutText ? aboutText.split('\n\n').filter(Boolean) : []
 
   return (
-    <main className="pt-32 pb-20 max-w-2xl mx-auto px-8">
+    <main id="main-content" className="pt-32 pb-20 max-w-2xl mx-auto px-8">
       <Reveal>
         <h1 className="text-5xl font-bold text-teal-600 leading-tight tracking-tight">About</h1>
       </Reveal>

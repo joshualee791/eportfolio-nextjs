@@ -1,10 +1,16 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { Archive, BookOpen } from 'lucide-react'
 import Reveal from '@/components/portfolio/Reveal'
 
+export const metadata: Metadata = {
+  title: 'Work Samples',
+  description: "Browse Joshua Lee Garza's artifacts and case studies.",
+}
+
 export default function Work() {
   return (
-    <main className="pt-32 pb-20 max-w-2xl mx-auto px-8">
+    <main id="main-content" className="pt-32 pb-20 max-w-2xl mx-auto px-8">
       <Reveal>
         <h1 className="text-5xl font-bold text-teal-600 leading-tight tracking-tight text-center">
           Work

@@ -1,8 +1,14 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { desc, eq } from 'drizzle-orm'
 import { db } from '@/lib/db/client'
 import { blogPosts } from '@/lib/db/schema'
 import Reveal from '@/components/portfolio/Reveal'
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: "Writing from Joshua Lee Garza on software, design, and engineering.",
+}
 
 export default async function Blog() {
   const posts = await db
@@ -12,7 +18,7 @@ export default async function Blog() {
     .orderBy(desc(blogPosts.publishedAt))
 
   return (
-    <main className="pt-32 pb-20 max-w-5xl mx-auto px-8">
+    <main id="main-content" className="pt-32 pb-20 max-w-5xl mx-auto px-8">
       <Reveal>
         <h1 className="text-5xl font-bold text-teal-600 leading-tight tracking-tight">Blog</h1>
       </Reveal>
