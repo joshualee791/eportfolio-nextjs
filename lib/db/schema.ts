@@ -32,6 +32,7 @@ export const caseStudies = pgTable('case_studies', {
   coverImageAlt: text('cover_image_alt'),
   seoTitle: text('seo_title'),
   metaDescription: text('meta_description'),
+  canonicalUrl: text('canonical_url'),
   techStack: text('tech_stack')
     .array()
     .notNull()
@@ -58,6 +59,7 @@ export const artifacts = pgTable('artifacts', {
   tags: text('tags').array().notNull().default([]),
   seoTitle: text('seo_title'),
   metaDescription: text('meta_description'),
+  canonicalUrl: text('canonical_url'),
   coverImageAlt: text('cover_image_alt'),
   featured: boolean('featured').notNull().default(false),
   order: integer('order').notNull().default(0),
@@ -78,6 +80,7 @@ export const blogPosts = pgTable('blog_posts', {
   coverImageAlt: text('cover_image_alt'),
   seoTitle: text('seo_title'),
   metaDescription: text('meta_description'),
+  canonicalUrl: text('canonical_url'),
   published: boolean('published').notNull().default(false),
   publishedAt: timestamp('published_at'),
   createdAt: timestamp('created_at').defaultNow(),

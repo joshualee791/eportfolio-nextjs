@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Header from '@/components/layout/Header'
 import TopoBackground from '@/components/home/TopoBackground'
+import { Toaster } from '@/components/ui/sonner'
+import { getSetting } from '@/lib/db/settings'
 import './globals.css'
 
 const inter = Inter({
@@ -15,12 +17,12 @@ export const metadata: Metadata = {
   description: 'Portfolio of Joshua Lee Garza — Computer Science Student & Full-Stack Developer',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const resumeUrl = ''
+  const resumeUrl = await getSetting('resumeUrl')
 
   return (
     <html lang="en" className={inter.variable}>
@@ -30,6 +32,7 @@ export default function RootLayout({
           <Header resumeUrl={resumeUrl} />
           {children}
         </div>
+        <Toaster />
       </body>
     </html>
   )

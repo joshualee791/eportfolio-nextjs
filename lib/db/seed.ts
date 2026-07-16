@@ -29,9 +29,12 @@ async function main() {
     { key: 'heroHeadline', value: JSON.stringify('Joshua Lee Garza') },
     { key: 'heroSubtitle', value: JSON.stringify('Computer Science Student · Full-Stack Developer') },
     { key: 'aboutText', value: JSON.stringify('') },
+    { key: 'aboutImageUrl', value: JSON.stringify('') },
     { key: 'resumeUrl', value: JSON.stringify('') },
     { key: 'linkedinUrl', value: JSON.stringify('') },
     { key: 'contactEmail', value: JSON.stringify('joshualee791@gmail.com') },
+    { key: 'educationContent', value: '[]' },
+    { key: 'skillsContent', value: '[]' },
   ]
 
   for (const row of defaults) {
