@@ -6,6 +6,7 @@ import { ExternalLink } from 'lucide-react'
 import { db } from '@/lib/db/client'
 import { artifacts } from '@/lib/db/schema'
 import Reveal from '@/components/portfolio/Reveal'
+import PageContainer from '@/components/layout/PageContainer'
 
 export async function generateStaticParams() {
   const rows = await db
@@ -48,7 +49,7 @@ export default async function ArtifactPage({ params }: ArtifactPageProps) {
   const typeLabel = artifact.type.charAt(0).toUpperCase() + artifact.type.slice(1)
 
   return (
-    <main id="main-content" className="max-w-3xl mx-auto pt-32 pb-20 px-4 sm:px-8">
+    <PageContainer variant="detail">
       {artifact.coverImage && (
         <Reveal>
           <Image
@@ -95,6 +96,6 @@ export default async function ArtifactPage({ params }: ArtifactPageProps) {
           Open {typeLabel}
         </a>
       </Reveal>
-    </main>
+    </PageContainer>
   )
 }

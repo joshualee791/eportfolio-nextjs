@@ -1,6 +1,7 @@
 import { db } from '@/lib/db/client'
 import { siteSettings } from '@/lib/db/schema'
 import SettingsForm from '@/components/admin/SettingsForm'
+import PageHeader from '@/components/layout/PageHeader'
 
 export default async function AdminSettingsPage() {
   const rows = await db.select().from(siteSettings)
@@ -32,7 +33,7 @@ export default async function AdminSettingsPage() {
 
   return (
     <div>
-      <h1 className="text-5xl font-bold text-teal-600 leading-tight tracking-tight">Settings</h1>
+      <PageHeader>Settings</PageHeader>
       <div className="mt-8">
         <SettingsForm initial={initial} />
       </div>

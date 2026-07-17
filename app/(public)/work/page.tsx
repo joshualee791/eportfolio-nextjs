@@ -4,6 +4,8 @@ import { Archive, BookOpen, FileText } from 'lucide-react'
 import Reveal from '@/components/portfolio/Reveal'
 import CrosshatchCard from '@/components/portfolio/CrosshatchCard'
 import { getSetting } from '@/lib/db/settings'
+import PageContainer from '@/components/layout/PageContainer'
+import PageHeader from '@/components/layout/PageHeader'
 
 export const metadata: Metadata = {
   title: 'Work Samples',
@@ -15,14 +17,10 @@ export default async function Work() {
   const hasResume = Boolean(resumeUrl)
 
   return (
-    <main id="main-content" className="pt-32 pb-20 max-w-2xl mx-auto px-8">
-      <Reveal>
-        <h1 className="text-5xl font-bold text-teal-600 leading-tight tracking-tight text-center">
-          Work
-        </h1>
-      </Reveal>
+    <PageContainer>
+      <PageHeader>Work</PageHeader>
 
-      <div className="flex flex-col sm:flex-row gap-6 mt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
         <Reveal delay={0.1} className="flex-1">
           <CrosshatchCard className="w-full h-full" offset={6}>
             <Link
@@ -73,6 +71,6 @@ export default async function Work() {
           </CrosshatchCard>
         </Reveal>
       </div>
-    </main>
+    </PageContainer>
   )
 }

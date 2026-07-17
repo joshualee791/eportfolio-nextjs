@@ -6,6 +6,7 @@ import { db } from '@/lib/db/client'
 import { blogPosts } from '@/lib/db/schema'
 import Reveal from '@/components/portfolio/Reveal'
 import RichText from '@/components/portfolio/RichText'
+import PageContainer from '@/components/layout/PageContainer'
 
 export async function generateStaticParams() {
   const posts = await db
@@ -46,7 +47,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main id="main-content" className="pt-32 pb-20 max-w-2xl mx-auto px-4 sm:px-8">
+    <PageContainer variant="detail">
       {post.coverImage && (
         <Reveal>
           <Image
@@ -77,6 +78,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <Reveal delay={0.2} className="mt-8">
         <RichText html={post.content} />
       </Reveal>
-    </main>
+    </PageContainer>
   )
 }

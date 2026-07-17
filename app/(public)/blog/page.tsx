@@ -5,6 +5,8 @@ import { db } from '@/lib/db/client'
 import { blogPosts } from '@/lib/db/schema'
 import Reveal from '@/components/portfolio/Reveal'
 import CrosshatchCard from '@/components/portfolio/CrosshatchCard'
+import PageContainer from '@/components/layout/PageContainer'
+import PageHeader from '@/components/layout/PageHeader'
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -19,17 +21,15 @@ export default async function Blog() {
     .orderBy(desc(blogPosts.publishedAt))
 
   return (
-    <main id="main-content" className="pt-32 pb-20 max-w-5xl mx-auto px-8">
-      <Reveal>
-        <h1 className="text-5xl font-bold text-teal-600 leading-tight tracking-tight">Blog</h1>
-      </Reveal>
+    <PageContainer>
+      <PageHeader>Blog</PageHeader>
 
       {posts.length === 0 ? (
         <Reveal delay={0.1} className="mt-8">
           <p className="text-zinc-300 text-xs">No posts published yet.</p>
         </Reveal>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
           {posts.map((post, i) => (
             <Reveal key={post.id} delay={i * 0.05}>
               <CrosshatchCard offset={6}>
@@ -56,6 +56,6 @@ export default async function Blog() {
           ))}
         </div>
       )}
-    </main>
+    </PageContainer>
   )
 }

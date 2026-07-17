@@ -4,6 +4,7 @@ import { count } from 'drizzle-orm'
 import { db } from '@/lib/db/client'
 import { artifacts, blogPosts, caseStudies } from '@/lib/db/schema'
 import { Button } from '@/components/ui/button'
+import PageHeader from '@/components/layout/PageHeader'
 
 async function getStats() {
   const [
@@ -46,7 +47,7 @@ export default async function AdminDashboard() {
 
   return (
     <div>
-      <h1 className="text-5xl font-bold text-teal-600 leading-tight tracking-tight">Dashboard</h1>
+      <PageHeader>Dashboard</PageHeader>
 
       <div className="grid grid-cols-3 gap-4 mt-8">
         {cards.map((card) => (

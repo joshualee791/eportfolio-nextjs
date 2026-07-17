@@ -9,6 +9,7 @@ import { caseStudies } from '@/lib/db/schema'
 import { Button } from '@/components/ui/button'
 import Reveal from '@/components/portfolio/Reveal'
 import RichText from '@/components/portfolio/RichText'
+import PageContainer from '@/components/layout/PageContainer'
 
 export async function generateStaticParams() {
   const rows = await db
@@ -62,7 +63,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   }
 
   return (
-    <main id="main-content" className="max-w-3xl mx-auto pt-32 pb-20 px-4 sm:px-8">
+    <PageContainer variant="detail">
       {study.coverImage && (
         <Reveal>
           <Image
@@ -125,6 +126,6 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <Reveal delay={0.1}>
         <Section heading="The Outcome" html={study.outcome} />
       </Reveal>
-    </main>
+    </PageContainer>
   )
 }

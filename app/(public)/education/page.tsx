@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { getSetting } from '@/lib/db/settings'
 import Reveal from '@/components/portfolio/Reveal'
+import PageContainer from '@/components/layout/PageContainer'
+import PageHeader from '@/components/layout/PageHeader'
 
 export const metadata: Metadata = {
   title: 'Education',
@@ -25,12 +27,8 @@ export default async function Education() {
   }
 
   return (
-    <main id="main-content" className="pt-32 pb-20 max-w-5xl mx-auto px-8">
-      <Reveal>
-        <h1 className="text-5xl font-bold text-teal-600 leading-tight tracking-tight">
-          Education
-        </h1>
-      </Reveal>
+    <PageContainer>
+      <PageHeader>Education</PageHeader>
 
       {items.length === 0 ? (
         <Reveal delay={0.1} className="mt-8">
@@ -62,6 +60,6 @@ export default async function Education() {
           ))}
         </div>
       )}
-    </main>
+    </PageContainer>
   )
 }
