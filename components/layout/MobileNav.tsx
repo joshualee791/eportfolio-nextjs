@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Mail, Settings, X } from 'lucide-react'
 import { FaLinkedin } from 'react-icons/fa'
 import { cn } from '@/lib/utils'
+import Monogram from '@/components/layout/Monogram'
 
 function HamburgerIcon() {
   return (
@@ -108,9 +109,7 @@ export default function MobileNav({ resumeUrl = '', linkedinUrl = '' }: MobileNa
             <X size={22} />
           </button>
 
-          <span className="font-extrabold tracking-widest text-teal-600 border border-teal-600 px-3 py-1 rounded text-base mb-5">
-            JLG
-          </span>
+          <Monogram size={44} className="mb-5" />
 
           <div className="flex items-center gap-6">
             <a

@@ -1,6 +1,7 @@
 import { loginAction } from '@/lib/actions/auth'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import Monogram from '@/components/layout/Monogram'
 
 export default async function AdminLoginPage({
   searchParams,
@@ -12,9 +13,7 @@ export default async function AdminLoginPage({
   return (
     <main className="min-h-screen flex items-center justify-center relative z-10 px-6">
       <div className="w-full max-w-sm">
-        <span className="inline-block font-extrabold text-sm tracking-[0.25em] text-teal-600 border-[1.5px] border-teal-600 px-2 py-1 rounded-[2px] mb-8">
-          JLG
-        </span>
+        <Monogram size={36} className="mb-8" />
 
         <h1 className="text-xl font-bold text-zinc-900 mb-6">Admin Login</h1>
 

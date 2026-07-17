@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Settings } from 'lucide-react'
 import MobileNav from '@/components/layout/MobileNav'
+import Monogram from '@/components/layout/Monogram'
 
 const navLinkStyle =
   'text-base font-medium text-zinc-700 hover:text-teal-600 transition-colors px-3 py-2'
@@ -19,9 +20,7 @@ export default function Header({ resumeUrl = '', linkedinUrl = '' }: HeaderProps
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5">
       <Link href="/">
-        <span className="inline-block font-extrabold text-sm tracking-[0.25em] text-teal-600 border-[1.5px] border-teal-600 px-2 py-1 rounded-[2px]">
-          JLG
-        </span>
+        <Monogram size={36} />
       </Link>
 
       <nav className="hidden md:flex items-center">
