@@ -58,7 +58,7 @@ export default async function About() {
               <Newspaper size={32} className="text-teal-600" />
               <h2 className="text-lg font-bold text-zinc-900 mt-4">Blog</h2>
               <p className="text-xs font-normal text-zinc-600 leading-snug mt-1">
-                Writing on software, design, and engineering.
+                Writing on operations, analytics, and process automation.
               </p>
             </Link>
           </CrosshatchCard>
