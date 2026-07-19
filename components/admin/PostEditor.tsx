@@ -332,7 +332,7 @@ export default function PostEditor({ type, initialData, id }: PostEditorProps) {
               endpoint="imageUploader"
               content={{ button: form.coverImage ? 'Replace image' : 'Upload image' }}
               appearance={{
-                button: 'bg-teal-600 text-white hover:bg-teal-700 text-sm font-medium px-4 py-2 rounded-md',
+                button: 'bg-teal-600 text-white hover:bg-teal-700 text-sm font-medium px-4 py-2 rounded-2xl',
                 allowedContent: 'text-zinc-500 text-xs mt-1',
               }}
               onClientUploadComplete={(res) => {
@@ -358,7 +358,7 @@ export default function PostEditor({ type, initialData, id }: PostEditorProps) {
                 endpoint="pdfUploader"
                 content={{ button: form.fileUrl ? 'Replace file' : 'Upload file' }}
                 appearance={{
-                  button: 'bg-teal-600 text-white hover:bg-teal-700 text-sm font-medium px-4 py-2 rounded-md',
+                  button: 'bg-teal-600 text-white hover:bg-teal-700 text-sm font-medium px-4 py-2 rounded-2xl',
                   allowedContent: 'text-zinc-500 text-xs mt-1',
                 }}
                 onClientUploadComplete={(res) => {

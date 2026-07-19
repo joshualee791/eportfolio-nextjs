@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Mail } from 'lucide-react'
 import { FaLinkedin } from 'react-icons/fa'
 import { getSetting } from '@/lib/db/settings'
@@ -24,7 +25,7 @@ export default async function Hero() {
 
           <div className="flex md:hidden items-center gap-4 mb-5 w-full max-w-xs">
             <div className="flex-1 h-px bg-zinc-200" />
-            <div className="w-1.5 h-1.5 rounded-full bg-teal-500" />
+            <div className="w-1.5 h-1.5 rounded-2xl bg-teal-500" />
             <div className="flex-1 h-px bg-zinc-200" />
           </div>
 
@@ -39,6 +40,21 @@ export default async function Hero() {
           >
             {heroSubtitle}
           </p>
+
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-8">
+            <Link
+              href="/work"
+              className="rounded-2xl bg-teal-600 text-white px-6 py-3 text-sm font-medium tracking-wide hover:bg-teal-700 transition-colors"
+            >
+              View my work
+            </Link>
+            <Link
+              href="/contact"
+              className="rounded-2xl border border-teal-600 text-teal-600 px-6 py-3 text-sm font-medium tracking-wide hover:bg-teal-50 transition-colors"
+            >
+              Talk to me
+            </Link>
+          </div>
 
           <div className="flex items-center gap-1">
             <a
@@ -60,7 +76,7 @@ export default async function Hero() {
           </div>
         </div>
 
-        <div className="hidden md:flex w-[42%] justify-end group cursor-pointer">
+        <div className="hidden md:flex w-[42%] justify-end">
           <PhotoCard />
         </div>
       </div>

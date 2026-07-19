@@ -21,20 +21,21 @@ export default async function About() {
     <PageContainer>
       <PageHeader>About</PageHeader>
 
-      <div className="max-w-2xl">
+      <div className="max-w-4xl mt-8 flex flex-col md:flex-row gap-8 md:gap-10">
         {aboutImageUrl && (
-          <Reveal delay={0.1} className="mt-8">
-            <Image
-              src={aboutImageUrl}
-              alt="Joshua Lee Garza"
-              width={320}
-              height={400}
-              className="rounded-2xl max-w-xs w-full h-auto object-cover"
-            />
+          <Reveal delay={0.1} className="md:w-1/3 shrink-0">
+            <CrosshatchCard className="w-full">
+              <div
+                className="relative rounded-2xl overflow-hidden bg-zinc-100 border-2 border-teal-600 h-full"
+                style={{ aspectRatio: '3/4' }}
+              >
+                <Image src={aboutImageUrl} alt="Joshua Lee Garza" fill className="object-cover" />
+              </div>
+            </CrosshatchCard>
           </Reveal>
         )}
 
-        <Reveal delay={0.2} className="mt-8 space-y-4">
+        <Reveal delay={0.2} className="md:w-2/3 space-y-4">
           {paragraphs.length > 0 ? (
             paragraphs.map((p, i) => (
               <p key={i} className="text-xs font-normal text-zinc-600 leading-snug">
