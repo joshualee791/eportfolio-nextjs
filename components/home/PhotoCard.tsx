@@ -8,7 +8,7 @@ export default async function PhotoCard() {
   return (
     <CrosshatchCard className="w-full max-w-xs mx-auto md:mx-0">
       <div
-        className="relative rounded-2xl overflow-hidden bg-zinc-100 border border-zinc-200 transition-all duration-300 ease-out group-hover:-translate-y-1.5 group-hover:shadow-xl h-full"
+        className="relative rounded-2xl overflow-hidden bg-zinc-100 border-2 border-teal-600 transition-all duration-300 ease-out group-hover:-translate-y-1.5 group-hover:shadow-xl h-full"
         style={{ aspectRatio: '3/4' }}
       >
         {aboutImageUrl ? (
