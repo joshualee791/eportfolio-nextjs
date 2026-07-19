@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { LayoutDashboard, FileStack, Settings, LogOut } from 'lucide-react'
 import { logoutAction } from '@/lib/actions/auth'
 import { cn } from '@/lib/utils'
+import Monogram from '@/components/layout/Monogram'
 
 const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
@@ -18,9 +19,7 @@ export default function AdminSidebar() {
   return (
     <aside className="w-56 border-r border-zinc-100 flex flex-col py-8 px-4">
       <Link href="/" className="mb-8">
-        <span className="inline-block font-extrabold text-sm tracking-[0.25em] text-teal-600 border-[1.5px] border-teal-600 px-2 py-1 rounded-[2px]">
-          JLG
-        </span>
+        <Monogram size={32} />
       </Link>
 
       <nav className="flex-1 flex flex-col gap-1">
