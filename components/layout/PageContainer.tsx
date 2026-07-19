@@ -15,7 +15,7 @@ export default function PageContainer({
     <main
       id="main-content"
       className={cn(
-        'mx-auto px-4 sm:px-8 pt-32 pb-20',
+        'mx-auto px-6 sm:px-8 pt-32 pb-20',
         variant === 'index' ? 'max-w-5xl' : 'max-w-3xl',
         className
       )}
