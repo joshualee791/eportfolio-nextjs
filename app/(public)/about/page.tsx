@@ -8,6 +8,7 @@ import RichText, { isEmptyHtml } from '@/components/portfolio/RichText'
 import CrosshatchCard from '@/components/portfolio/CrosshatchCard'
 import PageContainer from '@/components/layout/PageContainer'
 import PageHeader from '@/components/layout/PageHeader'
+import SectionLabel from '@/components/layout/SectionLabel'
 
 export const metadata: Metadata = {
   title: 'About',
@@ -44,7 +45,13 @@ export default async function About() {
         </Reveal>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+      <div className="border-t border-zinc-100 my-10" />
+
+      <Reveal delay={0.3}>
+        <SectionLabel>Explore</SectionLabel>
+      </Reveal>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
         <Reveal delay={0.3} className="flex-1">
           <CrosshatchCard className="w-full h-full" offset={6}>
             <Link
@@ -52,7 +59,7 @@ export default async function About() {
               className="block h-full bg-white border border-zinc-200 rounded-2xl p-8 hover:border-teal-400 hover:shadow-sm transition-all"
             >
               <Newspaper size={32} className="text-teal-600" />
-              <h2 className="text-lg font-bold text-zinc-900 mt-4">Blog</h2>
+              <h3 className="text-lg font-bold text-zinc-900 mt-4">Blog</h3>
               <p className="text-xs font-normal text-zinc-600 leading-snug mt-1">
                 Writing on operations, analytics, and process automation.
               </p>
@@ -67,7 +74,7 @@ export default async function About() {
               className="block h-full bg-white border border-zinc-200 rounded-2xl p-8 hover:border-teal-400 hover:shadow-sm transition-all"
             >
               <GraduationCap size={32} className="text-teal-600" />
-              <h2 className="text-lg font-bold text-zinc-900 mt-4">Education</h2>
+              <h3 className="text-lg font-bold text-zinc-900 mt-4">Education</h3>
               <p className="text-xs font-normal text-zinc-600 leading-snug mt-1">
                 Academic background and coursework.
               </p>
@@ -82,7 +89,7 @@ export default async function About() {
               className="block h-full bg-white border border-zinc-200 rounded-2xl p-8 hover:border-teal-400 hover:shadow-sm transition-all"
             >
               <Sparkles size={32} className="text-teal-600" />
-              <h2 className="text-lg font-bold text-zinc-900 mt-4">Skills</h2>
+              <h3 className="text-lg font-bold text-zinc-900 mt-4">Skills</h3>
               <p className="text-xs font-normal text-zinc-600 leading-snug mt-1">
                 Technical skills and areas of expertise.
               </p>

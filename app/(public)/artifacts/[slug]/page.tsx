@@ -7,6 +7,7 @@ import { db } from '@/lib/db/client'
 import { artifacts } from '@/lib/db/schema'
 import Reveal from '@/components/portfolio/Reveal'
 import PageContainer from '@/components/layout/PageContainer'
+import SectionLabel from '@/components/layout/SectionLabel'
 
 export async function generateStaticParams() {
   const rows = await db
@@ -79,18 +80,21 @@ export default async function ArtifactPage({ params }: ArtifactPageProps) {
         </div>
       </Reveal>
 
-      <Reveal delay={0.2}>
-        <p className="text-xs font-normal text-zinc-600 leading-snug mt-6">
+      <div className="border-t border-zinc-100 my-10" />
+
+      <Reveal delay={0.1}>
+        <SectionLabel>Overview</SectionLabel>
+        <p className="text-xs font-normal text-zinc-600 leading-snug mt-4">
           {artifact.description}
         </p>
       </Reveal>
 
-      <Reveal delay={0.3}>
+      <Reveal delay={0.2}>
         <a
           href={artifact.fileUrl}
           target="_blank"
           rel="noopener"
-          className="mt-8 flex items-center justify-center gap-2 w-full rounded-md bg-teal-600 text-white text-sm font-medium py-3 hover:bg-teal-700 transition-colors"
+          className="mt-8 flex items-center justify-center gap-2 w-full rounded-2xl bg-teal-600 text-white text-sm font-medium py-3 hover:bg-teal-700 transition-colors"
         >
           <ExternalLink size={16} />
           Open {typeLabel}
