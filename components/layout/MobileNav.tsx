@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { Mail, Settings, X } from 'lucide-react'
 import { FaLinkedin } from 'react-icons/fa'
@@ -73,17 +74,11 @@ export default function MobileNav({ resumeUrl = '', linkedinUrl = '' }: MobileNa
     { top: { label: 'Contact', href: '/contact' }, children: [] },
   ]
 
-  return (
-    <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        aria-label="Open menu"
-        className="md:hidden flex items-center justify-center w-11 h-11 text-zinc-700 hover:text-teal-600 transition-colors"
-      >
-        <HamburgerIcon />
-      </button>
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
 
+  const overlay = (
+    <>
       <div
         className={cn(
           'fixed inset-0 bg-black/30 z-40 transition-opacity duration-300',
@@ -197,6 +192,21 @@ export default function MobileNav({ resumeUrl = '', linkedinUrl = '' }: MobileNa
           })}
         </nav>
       </div>
+    </>
+  )
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        aria-label="Open menu"
+        className="md:hidden flex items-center justify-center w-11 h-11 text-zinc-700 hover:text-teal-600 transition-colors"
+      >
+        <HamburgerIcon />
+      </button>
+
+      {mounted && createPortal(overlay, document.body)}
     </>
   )
 }

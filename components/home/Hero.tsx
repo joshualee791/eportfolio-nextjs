@@ -9,7 +9,7 @@ export default async function Hero() {
   const heroSubtitle = (await getSetting('heroSubtitle')) || 'Computer Science  ·  Full-Stack Developer'
 
   return (
-    <section className="relative h-screen flex items-center overflow-hidden px-8 md:px-16">
+    <section className="relative min-h-screen flex items-center overflow-hidden px-8 md:px-16 pt-24 md:pt-0">
       <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-16">
         <div className="w-full flex justify-center md:hidden">
           <PhotoCard />
