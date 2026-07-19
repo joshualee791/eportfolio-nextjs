@@ -21,7 +21,9 @@ type SettingsFormProps = {
     linkedinUrl: string
     contactEmail: string
     educationContent: string
+    educationImageUrl: string
     skillsContent: string
+    skillsImageUrl: string
   }
 }
 
@@ -108,6 +110,11 @@ export default function SettingsForm({ initial }: SettingsFormProps) {
       </Section>
 
       <Section label="Education">
+        <HeroImageField
+          label="Education Image"
+          value={form.educationImageUrl}
+          onChange={(url) => update('educationImageUrl', url)}
+        />
         <div className="space-y-1.5">
           <Label htmlFor="educationContent" className="text-xs text-zinc-600">
             Education Content
@@ -121,6 +128,11 @@ export default function SettingsForm({ initial }: SettingsFormProps) {
       </Section>
 
       <Section label="Skills">
+        <HeroImageField
+          label="Skills Image"
+          value={form.skillsImageUrl}
+          onChange={(url) => update('skillsImageUrl', url)}
+        />
         <div className="space-y-1.5">
           <Label htmlFor="skillsContent" className="text-xs text-zinc-600">
             Skills Content

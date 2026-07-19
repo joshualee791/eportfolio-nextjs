@@ -28,7 +28,9 @@ export default async function AdminSettingsPage() {
     linkedinUrl: textValue('linkedinUrl'),
     contactEmail: textValue('contactEmail'),
     educationContent: textValue('educationContent'),
+    educationImageUrl: textValue('educationImageUrl'),
     skillsContent: textValue('skillsContent'),
+    skillsImageUrl: textValue('skillsImageUrl'),
   }
 
   return (

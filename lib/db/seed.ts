@@ -35,7 +35,9 @@ async function main() {
     { key: 'linkedinUrl', value: JSON.stringify('') },
     { key: 'contactEmail', value: JSON.stringify('joshualee791@gmail.com') },
     { key: 'educationContent', value: JSON.stringify('') },
+    { key: 'educationImageUrl', value: JSON.stringify('/education-placeholder.png') },
     { key: 'skillsContent', value: JSON.stringify('') },
+    { key: 'skillsImageUrl', value: JSON.stringify('/skills-placeholder.png') },
   ]
 
   for (const row of defaults) {
