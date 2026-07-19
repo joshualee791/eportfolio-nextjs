@@ -21,6 +21,9 @@ export default async function AdminSettingsPage() {
   const initial = {
     heroSubtitle: textValue('heroSubtitle'),
     aboutText: textValue('aboutText'),
+    aboutImageUrl: textValue('aboutImageUrl'),
+    workText: textValue('workText'),
+    workImageUrl: textValue('workImageUrl'),
     resumeUrl: textValue('resumeUrl'),
     linkedinUrl: textValue('linkedinUrl'),
     contactEmail: textValue('contactEmail'),

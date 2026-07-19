@@ -29,6 +29,8 @@ async function main() {
     { key: 'heroHeadline', value: JSON.stringify('Joshua Lee Garza') },
     { key: 'aboutText', value: JSON.stringify('') },
     { key: 'aboutImageUrl', value: JSON.stringify('') },
+    { key: 'workText', value: JSON.stringify('') },
+    { key: 'workImageUrl', value: JSON.stringify('/headshot.png') },
     { key: 'resumeUrl', value: JSON.stringify('') },
     { key: 'linkedinUrl', value: JSON.stringify('') },
     { key: 'contactEmail', value: JSON.stringify('joshualee791@gmail.com') },

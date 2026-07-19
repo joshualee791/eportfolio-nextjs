@@ -7,12 +7,16 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import TiptapEditor from '@/components/admin/TiptapEditor'
+import HeroImageField from '@/components/admin/HeroImageField'
 import { updateSettings } from '@/lib/actions/settings'
 
 type SettingsFormProps = {
   initial: {
     heroSubtitle: string
     aboutText: string
+    aboutImageUrl: string
+    workText: string
+    workImageUrl: string
     resumeUrl: string
     linkedinUrl: string
     contactEmail: string
@@ -68,6 +72,11 @@ export default function SettingsForm({ initial }: SettingsFormProps) {
       </Section>
 
       <Section label="About">
+        <HeroImageField
+          label="About Image"
+          value={form.aboutImageUrl}
+          onChange={(url) => update('aboutImageUrl', url)}
+        />
         <div className="space-y-1.5">
           <Label htmlFor="aboutText" className="text-xs text-zinc-600">
             About Text
@@ -76,6 +85,24 @@ export default function SettingsForm({ initial }: SettingsFormProps) {
             content={form.aboutText}
             onChange={(html) => update('aboutText', html)}
             placeholder="Write something about yourself..."
+          />
+        </div>
+      </Section>
+
+      <Section label="Work">
+        <HeroImageField
+          label="Work Image"
+          value={form.workImageUrl}
+          onChange={(url) => update('workImageUrl', url)}
+        />
+        <div className="space-y-1.5">
+          <Label htmlFor="workText" className="text-xs text-zinc-600">
+            Work Text
+          </Label>
+          <TiptapEditor
+            content={form.workText}
+            onChange={(html) => update('workText', html)}
+            placeholder="Write something about your work..."
           />
         </div>
       </Section>
