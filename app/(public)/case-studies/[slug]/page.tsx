@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import Reveal from '@/components/portfolio/Reveal'
 import RichText from '@/components/portfolio/RichText'
 import PageContainer from '@/components/layout/PageContainer'
+import SectionLabel from '@/components/layout/SectionLabel'
 
 export async function generateStaticParams() {
   const rows = await db
@@ -44,9 +45,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
 function Section({ heading, html }: { heading: string; html: string }) {
   return (
     <div>
-      <h2 className="text-2xl font-light uppercase tracking-[0.12em] text-zinc-900 leading-tight">
-        {heading}
-      </h2>
+      <SectionLabel>{heading}</SectionLabel>
       <div className="mt-4">
         <RichText html={html} />
       </div>

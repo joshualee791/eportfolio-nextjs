@@ -40,9 +40,9 @@ export default function ArtifactCard({ artifact }: ArtifactCardProps) {
         )}
       </CrosshatchCard>
 
-      <h3 className="text-sm font-bold text-zinc-900 mt-3 group-hover:text-teal-600 transition-colors">
+      <h2 className="text-base font-bold text-zinc-900 mt-3 group-hover:text-teal-600 transition-colors">
         {artifact.title}
-      </h3>
+      </h2>
       <p className="text-xs text-zinc-500 line-clamp-2 mt-1">{artifact.description}</p>
 
       <div className="flex flex-wrap items-center gap-1.5 mt-2">

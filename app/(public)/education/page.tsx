@@ -1,6 +1,9 @@
+import Image from 'next/image'
 import type { Metadata } from 'next'
-import { getSetting } from '@/lib/db/settings'
+import { getSettings } from '@/lib/db/settings'
 import Reveal from '@/components/portfolio/Reveal'
+import RichText, { isEmptyHtml } from '@/components/portfolio/RichText'
+import CrosshatchCard from '@/components/portfolio/CrosshatchCard'
 import PageContainer from '@/components/layout/PageContainer'
 import PageHeader from '@/components/layout/PageHeader'
 
@@ -9,57 +12,43 @@ export const metadata: Metadata = {
   description: "Joshua Lee Garza's academic background and education history.",
 }
 
-type EducationItem = {
-  institution: string
-  degree: string
-  period: string
-  description?: string
-  current?: boolean
-}
-
 export default async function Education() {
-  const raw = await getSetting('educationContent')
-  let items: EducationItem[] = []
-  try {
-    items = raw ? JSON.parse(raw) : []
-  } catch {
-    items = []
-  }
+  const { educationContent, educationImageUrl } = await getSettings([
+    'educationContent',
+    'educationImageUrl',
+  ])
 
   return (
     <PageContainer>
       <PageHeader>Education</PageHeader>
 
-      {items.length === 0 ? (
-        <Reveal delay={0.1} className="mt-8">
-          <p className="text-zinc-300 text-xs">Education history coming soon.</p>
-        </Reveal>
-      ) : (
-        <div className="mt-10 space-y-10">
-          {items.map((item, i) => (
-            <Reveal key={`${item.institution}-${i}`} delay={i * 0.1}>
-              <div className="flex items-center gap-3">
-                <h2 className="text-2xl font-light uppercase tracking-[0.12em] text-zinc-900 leading-tight">
-                  {item.institution}
-                </h2>
-                {item.current && (
-                  <span className="text-xs text-teal-600 border border-teal-600 rounded-full px-2 py-0.5">
-                    Current
-                  </span>
-                )}
+      <div className="max-w-4xl mt-8 flex flex-col md:flex-row gap-8 md:gap-10">
+        {educationImageUrl && (
+          <Reveal delay={0.1} className="md:w-1/3 shrink-0">
+            <CrosshatchCard className="w-full">
+              <div
+                className="relative rounded-2xl overflow-hidden bg-zinc-100 border-2 border-teal-600 h-full"
+                style={{ aspectRatio: '3/4' }}
+              >
+                <Image
+                  src={educationImageUrl}
+                  alt="Joshua Lee Garza's education"
+                  fill
+                  className="object-cover"
+                />
               </div>
-              <p className="text-zinc-400 text-xs uppercase tracking-wide mt-1">
-                {item.degree} · {item.period}
-              </p>
-              {item.description && (
-                <p className="text-xs font-normal text-zinc-600 leading-snug mt-2 max-w-2xl">
-                  {item.description}
-                </p>
-              )}
-            </Reveal>
-          ))}
-        </div>
-      )}
+            </CrosshatchCard>
+          </Reveal>
+        )}
+
+        <Reveal delay={0.2} className="md:w-2/3">
+          {isEmptyHtml(educationContent) ? (
+            <p className="text-zinc-300 text-xs">Education history coming soon.</p>
+          ) : (
+            <RichText html={educationContent} />
+          )}
+        </Reveal>
+      </div>
     </PageContainer>
   )
 }

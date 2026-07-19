@@ -25,9 +25,9 @@ export default function CaseStudyCard({ study }: CaseStudyCardProps) {
         )}
       </CrosshatchCard>
 
-      <h3 className="text-base font-bold text-zinc-900 mt-3 group-hover:text-teal-600 transition-colors">
+      <h2 className="text-base font-bold text-zinc-900 mt-3 group-hover:text-teal-600 transition-colors">
         {study.title}
-      </h3>
+      </h2>
       <p className="text-xs text-zinc-500 line-clamp-2 mt-1">{study.summary}</p>
 
       <div className="flex flex-wrap gap-1.5 mt-2">

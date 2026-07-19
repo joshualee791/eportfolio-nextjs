@@ -11,24 +11,26 @@ export default async function AdminSettingsPage() {
     const value = raw.get(key)
     if (value === undefined) return ''
     try {
-      return JSON.parse(value)
+      const parsed = JSON.parse(value)
+      return typeof parsed === 'string' ? parsed : ''
     } catch {
       return value
     }
   }
 
-  function jsonValue(key: string): string {
-    return raw.get(key) ?? '[]'
-  }
-
   const initial = {
     heroSubtitle: textValue('heroSubtitle'),
     aboutText: textValue('aboutText'),
+    aboutImageUrl: textValue('aboutImageUrl'),
+    workText: textValue('workText'),
+    workImageUrl: textValue('workImageUrl'),
     resumeUrl: textValue('resumeUrl'),
     linkedinUrl: textValue('linkedinUrl'),
     contactEmail: textValue('contactEmail'),
-    educationContent: jsonValue('educationContent'),
-    skillsContent: jsonValue('skillsContent'),
+    educationContent: textValue('educationContent'),
+    educationImageUrl: textValue('educationImageUrl'),
+    skillsContent: textValue('skillsContent'),
+    skillsImageUrl: textValue('skillsImageUrl'),
   }
 
   return (

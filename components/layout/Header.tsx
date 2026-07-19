@@ -1,7 +1,11 @@
+'use client'
+
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Settings } from 'lucide-react'
 import MobileNav from '@/components/layout/MobileNav'
 import Monogram from '@/components/layout/Monogram'
+import { cn } from '@/lib/utils'
 
 const navLinkStyle =
   'text-base font-medium text-zinc-700 hover:text-teal-600 transition-colors px-3 py-2'
@@ -16,9 +20,24 @@ type HeaderProps = {
 
 export default function Header({ resumeUrl = '', linkedinUrl = '' }: HeaderProps) {
   const hasResume = Boolean(resumeUrl)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 8)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5">
+    <header
+      className={cn(
+        'fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5 transition-colors duration-300',
+        scrolled && 'bg-white/80 backdrop-blur-md border-b border-zinc-100 shadow-sm'
+      )}
+    >
       <Link href="/">
         <Monogram size={36} />
       </Link>
