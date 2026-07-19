@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Newspaper, GraduationCap, Sparkles } from 'lucide-react'
 import { getSettings } from '@/lib/db/settings'
 import Reveal from '@/components/portfolio/Reveal'
+import RichText, { isEmptyHtml } from '@/components/portfolio/RichText'
 import CrosshatchCard from '@/components/portfolio/CrosshatchCard'
 import PageContainer from '@/components/layout/PageContainer'
 import PageHeader from '@/components/layout/PageHeader'
@@ -15,7 +16,6 @@ export const metadata: Metadata = {
 
 export default async function About() {
   const { aboutText, aboutImageUrl } = await getSettings(['aboutText', 'aboutImageUrl'])
-  const paragraphs = aboutText ? aboutText.split('\n\n').filter(Boolean) : []
 
   return (
     <PageContainer>
@@ -35,15 +35,11 @@ export default async function About() {
           </Reveal>
         )}
 
-        <Reveal delay={0.2} className="md:w-2/3 space-y-4">
-          {paragraphs.length > 0 ? (
-            paragraphs.map((p, i) => (
-              <p key={i} className="text-xs font-normal text-zinc-600 leading-snug">
-                {p}
-              </p>
-            ))
-          ) : (
+        <Reveal delay={0.2} className="md:w-2/3">
+          {isEmptyHtml(aboutText) ? (
             <p className="text-zinc-300 text-xs">Content coming soon.</p>
+          ) : (
+            <RichText html={aboutText} />
           )}
         </Reveal>
       </div>

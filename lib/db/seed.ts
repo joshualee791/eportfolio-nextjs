@@ -32,8 +32,8 @@ async function main() {
     { key: 'resumeUrl', value: JSON.stringify('') },
     { key: 'linkedinUrl', value: JSON.stringify('') },
     { key: 'contactEmail', value: JSON.stringify('joshualee791@gmail.com') },
-    { key: 'educationContent', value: '[]' },
-    { key: 'skillsContent', value: '[]' },
+    { key: 'educationContent', value: JSON.stringify('') },
+    { key: 'skillsContent', value: JSON.stringify('') },
   ]
 
   for (const row of defaults) {

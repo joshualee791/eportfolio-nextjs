@@ -11,14 +11,11 @@ export default async function AdminSettingsPage() {
     const value = raw.get(key)
     if (value === undefined) return ''
     try {
-      return JSON.parse(value)
+      const parsed = JSON.parse(value)
+      return typeof parsed === 'string' ? parsed : ''
     } catch {
       return value
     }
-  }
-
-  function jsonValue(key: string): string {
-    return raw.get(key) ?? '[]'
   }
 
   const initial = {
@@ -27,8 +24,8 @@ export default async function AdminSettingsPage() {
     resumeUrl: textValue('resumeUrl'),
     linkedinUrl: textValue('linkedinUrl'),
     contactEmail: textValue('contactEmail'),
-    educationContent: jsonValue('educationContent'),
-    skillsContent: jsonValue('skillsContent'),
+    educationContent: textValue('educationContent'),
+    skillsContent: textValue('skillsContent'),
   }
 
   return (
